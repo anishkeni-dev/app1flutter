@@ -1,10 +1,9 @@
-import 'package:app1/models/products.dart';
-import 'package:http/http.dart' as http;
+import 'package:app1/model/products.dart';
 import 'dart:convert';
+import 'package:app1/model/services/product_service.dart';
 
-Future<List<Product>> getRequest() async {
-  //replace your restFull API here.
-  final response = await http.get(Uri.https('fakestoreapi.com','products'));
+Future<List<Product>> fetchproductlist() async {
+  final response = await getRequest();
   var responseData = json.decode(response.body);
   //Creating a list to store input data;
   List<Product> products = [];

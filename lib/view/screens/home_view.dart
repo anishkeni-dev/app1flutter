@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:app1/Api/fakeproduct.dart';
-import 'package:app1/Widgets/home.dart';
+import 'package:app1/model/product_repo.dart';
+import '../../view model/home_vm.dart';
+import '../Widgets/home.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,15 +23,9 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           padding: EdgeInsets.all(16.0),
           child: FutureBuilder(
-            future: getRequest(),
+            future: fetchproductlist(),
             builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-              if (snapshot.data == null) {
-                return nodata();
-
-              } else {
-                  return  buildproducts(ctx, snapshot);
-
-              }
+              return productview(ctx,snapshot);
             },
           ),
         ),

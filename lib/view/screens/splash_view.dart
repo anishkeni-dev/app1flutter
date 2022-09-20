@@ -1,5 +1,6 @@
-import 'package:app1/Widgets/splash.dart';
 import 'package:flutter/material.dart';
+
+import '../Widgets/splash.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -20,20 +21,20 @@ class _SplashState extends State<Splash> {
     super.initState();
 
 }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-          Container(
-            transform: Matrix4.translationValues(150.0, 320.0, 0.0),
-            child: Text('Anish Keni',
-                style: TextStyle(color: Colors.black,
-                    fontSize:23)
+          Center(
+            child: Container(
+              child: Text('Anish Keni',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize:23)
+              ),
             ),
           ),
       );
-
   }
 }
 

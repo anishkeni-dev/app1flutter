@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:app1/Widgets/login.dart';
+import 'package:app1/view/Widgets/login.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+
+import '../../view model/login_vm.dart';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key}) : super(key: key);
@@ -21,11 +23,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage('images/frame1login.png') ,fit: BoxFit.cover),
       ),
-
 
       child: Scaffold(
         appBar: AppBar(
@@ -35,14 +35,12 @@ class _MyLoginPageState extends State<MyLoginPage> {
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
-
           child:
           Center(
             child: Column(
 
                 children:
                 <Widget>[
-
                   Container(
                     transform: Matrix4.translationValues(0, 70, 0),
                     child:
@@ -52,20 +50,18 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   ),
 
                   Container(
-
                     margin:EdgeInsets.only(top: MediaQuery.of(context).size.height*0.12,),
                     child:
                     AutoSizeText(
-
                       'Sign in',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 35.0,
-
                       ),
 
                     ),
                   ),
+
                   Container(
                     width: MediaQuery.of(context).size.width*0.8,
                     margin:EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06,
@@ -90,9 +86,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: 20),
                   Container(
-
                     width: MediaQuery.of(context).size.width*0.8,
                     child: TextFormField(
                       style: TextStyle(color: Colors.white),
@@ -129,11 +125,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           side: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(10))),
                     ),
-                    onPressed:() async{
-                     setState(() {
-                       readJson(ucontroller.text,pcontroller.text,context);
-                     });
-                    }
+                    onPressed: (){setState(() async{
+                       fetchuser(ucontroller.text,pcontroller.text,context);
+                      });
+                      }
                     ,child: Text('Sign in'),
                   ),
                   Container(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:app1/UI/login_view.dart';
-import 'package:app1/UI/home_view.dart';
+import 'package:app1/view/screens/login_view.dart';
+import 'package:app1/view/screens/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-var obtaineduname;
 
-  List user = [];
+var obtaineduname;
+List user = [];
 
   Future getValidationData(context) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -30,8 +30,7 @@ var obtaineduname;
         await Future.delayed(Duration(milliseconds: 1500), () {});
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => MyLoginPage()));
-        print(
-            "###############################################\n\n\n\nNew user");
+        print("###############################################\n\n\n\nNew user");
       }
     }
 

@@ -1,5 +1,4 @@
-import 'package:app1/UI/login_view.dart';
-import 'package:app1/UI/splash_view.dart';
+import 'package:app1/view/screens/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
