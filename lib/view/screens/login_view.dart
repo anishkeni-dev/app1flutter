@@ -125,7 +125,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           side: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(10))),
                     ),
-                    onPressed: (){setState(() async{
+                    onPressed: ()async{
+                      setState(() {
                       readJson(ucontroller.text,pcontroller.text,context);
                       });
                       }
