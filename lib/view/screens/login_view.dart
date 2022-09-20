@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:app1/view/Widgets/login.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../view model/login_vm.dart';
+import '../../viewmodel/Widgets/login.dart';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key}) : super(key: key);
@@ -126,7 +126,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           borderRadius: BorderRadius.circular(10))),
                     ),
                     onPressed: (){setState(() async{
-                       fetchuser(ucontroller.text,pcontroller.text,context);
+                      readJson(ucontroller.text,pcontroller.text,context);
                       });
                       }
                     ,child: Text('Sign in'),

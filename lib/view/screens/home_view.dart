@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:app1/model/product_repo.dart';
-import '../../view model/home_vm.dart';
-import '../Widgets/home.dart';
+import '../../viewmodel/Widgets/home.dart';
+
+
 
 
 class HomePage extends StatefulWidget {
@@ -25,7 +26,12 @@ class _HomePageState extends State<HomePage> {
           child: FutureBuilder(
             future: fetchproductlist(),
             builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-              return productview(ctx,snapshot);
+              if (snapshot.data == null) {
+                return nodata();
+
+              } else {
+                return  buildproducts(ctx, snapshot);
+              }
             },
           ),
         ),

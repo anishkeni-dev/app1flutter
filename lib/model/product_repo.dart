@@ -1,6 +1,7 @@
 import 'package:app1/model/products.dart';
 import 'dart:convert';
-import 'package:app1/model/services/product_service.dart';
+import 'api/product_api.dart';
+
 
 Future<List<Product>> fetchproductlist() async {
   final response = await getRequest();

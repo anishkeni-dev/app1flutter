@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
+import '../../viewmodel/Widgets/home.dart';
 
-import '../Widgets/home.dart';
 
 class Product extends StatefulWidget {
   const Product({Key? key}) : super(key: key);
