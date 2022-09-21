@@ -25,7 +25,7 @@ class _ProductState extends State<Product> {
         backgroundColor: Colors.black26,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(40),
-          child: buildappbar(),
+          child: buildappbar(context),
         ),
         body:
             Container(

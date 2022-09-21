@@ -30,6 +30,7 @@ Future <dynamic> readJson(uname,pswd,context) async {
               MaterialPageRoute(builder: (context) => HomePage()));
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString('uname', uname);
+
         }
        // incorrect credentials
        else{

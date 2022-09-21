@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black26,
          appBar: PreferredSize(
         preferredSize: const Size.fromHeight(40),
-        child: buildappbar(),
+        child: buildappbar(context),
          ),
         body: Container(
           padding: EdgeInsets.all(16.0),

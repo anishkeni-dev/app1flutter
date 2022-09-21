@@ -5,6 +5,7 @@ import 'package:app1/view/screens/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 var obtaineduname;
+
 List user = [];
 
   Future getValidationData(context) async {
@@ -14,7 +15,10 @@ List user = [];
 
   }
 
-  validatelogin(context ) async{
+
+
+  validatelogin(context ) async {
+
       final String response = await DefaultAssetBundle.of(context).loadString(
           "assets/response.json");
       final data = jsonDecode(response);
@@ -32,5 +36,6 @@ List user = [];
             context, MaterialPageRoute(builder: (context) => MyLoginPage()));
         print("###############################################\n\n\n\nNew user");
       }
-    }
+
+  }
 
