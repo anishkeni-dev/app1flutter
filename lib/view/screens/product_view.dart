@@ -1,38 +1,53 @@
+import 'package:app1/model/products.dart';
+import 'package:app1/viewmodel/Widgets/home.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
-import '../../viewmodel/Widgets/home.dart';
+import '../../viewmodel/Widgets/Product.dart';
 
 
-class Product extends StatefulWidget {
-  const Product({Key? key}) : super(key: key);
+
+class SelectProduct extends StatefulWidget {
+  const SelectProduct({Key? key}) : super(key: key);
   @override
-  State<Product> createState() => _ProductState();
-}
-var product_no;
-var products;
-SingleProduct(index,snapshot){
-  product_no = index;
-  products = snapshot;
-  print(products.data[product_no].title);
-
+  State<SelectProduct> createState() => _SelectProductState();
 }
 
-class _ProductState extends State<Product> {
+Map<String, String> products = Map();
+getproduct(prods){
+products = prods;
+}
+
+
+
+class _SelectProductState extends State<SelectProduct> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
         backgroundColor: Colors.black26,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(40),
-          child: buildappbar(context),
+          child: productappbar(context),
         ),
         body:
-            Container(
-            child: Text(products.data[product_no].title),
-          ),
+        Column(
+          children: [
+           Expanded(
+             child:SingleChildScrollView(
+                padding: EdgeInsets.all(20),
+                child: singleproduct(products, context),
+              ),
+            ),
 
 
+          ],
+        ),
+
+      ),
     );
   }
 }
+
+
+
+

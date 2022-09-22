@@ -19,7 +19,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage('images/frame1login.png'), fit: BoxFit.cover),
       ),
@@ -43,7 +43,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.12,
                 ),
-                child: AutoSizeText(
+                child: const AutoSizeText(
                   'Sign in',
                   style: TextStyle(
                     color: Colors.white,
@@ -57,50 +57,50 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   top: MediaQuery.of(context).size.height * 0.06,
                 ),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.white), //<-- SEE HERE
+                  style: const TextStyle(color: Colors.white), //<-- SEE HERE
                   controller: ucontroller,
                   decoration: InputDecoration(
                       hintText: 'Username',
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.white,width: 2),
+                        borderSide: const BorderSide(color: Colors.white, width: 2),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.white, width: 2),
+                        borderSide: const BorderSide(color: Colors.white, width: 2),
                       )),
                 ),
               ),
-              SizedBox(height: 20),
-              Container(
+              const SizedBox(height: 20),
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextFormField(
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   controller: pcontroller,
                   obscureText: true,
                   decoration: InputDecoration(
                       hintText: 'Password',
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.white, width: 2),
+                        borderSide: const BorderSide(color: Colors.white, width: 2),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.white, width: 2),
+                        borderSide: const BorderSide(color: Colors.white, width: 2),
                       )),
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(18),
-                child: Text(
+                padding: const EdgeInsets.all(18),
+                child: const Text(
                   'Forgot Password?',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -112,7 +112,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.black),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.white),
+                      side: const BorderSide(color: Colors.white),
                       borderRadius: BorderRadius.circular(10))),
                 ),
                 onPressed: () async {
@@ -120,11 +120,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     readJson(ucontroller.text, pcontroller.text, context);
                   });
                 },
-                child: Text('Sign in'),
+                child: const Text('Sign in'),
               ),
               Container(
-                padding: EdgeInsets.all(18),
-                child: Text('New User? Sign Up',
+                padding: const EdgeInsets.all(18),
+                child: const Text('New User? Sign Up',
                     style: TextStyle(color: Colors.white)),
               )
             ]),

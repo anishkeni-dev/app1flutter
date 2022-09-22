@@ -14,8 +14,9 @@ Future<List<Product>> fetchproductlist() async {
       title: singleProduct["title"],
       price: singleProduct["price"].toString(),
       image: singleProduct["image"],
+      rating: singleProduct["rating"]['rate'].toString(),
+      desc: singleProduct["description"],
     );
-
     //Adding Product to the list.
     products.add(prods);
   }
