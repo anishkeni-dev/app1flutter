@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../viewmodel/Widgets/splash.dart';
+
+import '../../viewmodel/splash.dart';
+import '../Widgets/splash_w.dart';
+
 
 
 class Splash extends StatefulWidget {
@@ -24,16 +27,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          Center(
-            child: Container(
-              child: Text('Anish Keni',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize:23)
-              ),
-            ),
-          ),
+      body: getsplash(),
       );
   }
 }

@@ -1,7 +1,9 @@
+import 'package:app1/viewmodel/home.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/model/product_repo.dart';
-import '../../viewmodel/Widgets/home.dart';
+import '../Widgets/home_w.dart';
 
+import 'dart:math' as math;
 
 
 
@@ -9,7 +11,6 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-
 class _HomePageState extends State<HomePage> {
 
   @override
@@ -30,12 +31,12 @@ class _HomePageState extends State<HomePage> {
                 return nodata();
 
               } else {
-                return  buildproducts(ctx, snapshot);
+               return buildproducts(ctx, snapshot);
               }
             },
           ),
         ),
       ),
-    );
+      );
   }
 }

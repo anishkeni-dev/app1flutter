@@ -1,12 +1,15 @@
-import 'package:app1/view/screens/home_view.dart';
-import 'package:app1/view/screens/login_view.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+
+import 'package:app1/view/Widgets/login_w.dart';
+import 'package:app1/viewmodel/home.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
+import '../screens/login_screen.dart';
+import '../screens/product_screen.dart';
 
-import '../../view/screens/product_view.dart';
-import 'Product.dart';
+
 
 Widget buildappbar(context) {
   return AppBar(
@@ -62,7 +65,6 @@ Widget buildproducts(context, snapshot) {
       crossAxisSpacing: MediaQuery.of(context).size.width * 0.04,
     ),
     itemCount: snapshot.data.length,
-
     itemBuilder: (ctx, index) => GestureDetector(
       onTap: (){
         Map<String,String> prods = Map();
@@ -76,17 +78,13 @@ Widget buildproducts(context, snapshot) {
         Navigator.push( context,
             MaterialPageRoute(
                 builder: (BuildContext ctx) => const SelectProduct()));
-        },
+      },
       child: Card(
         child: Column(
           children: [
             Container(
               margin: const EdgeInsets.all(10),
-              child: Image.network(
-                snapshot.data[index].image,
-                width: 120,
-                height: 120,
-              ),
+              child: getimage(snapshot, index, context),
             ),
             Divider(
               thickness: 0.5, // thickness of the line
@@ -97,20 +95,18 @@ Widget buildproducts(context, snapshot) {
             ),
             Container(
                 margin: const EdgeInsets.all(8),
-                child: AutoSizeText(
-                  snapshot.data[index].title,
-                  overflow: TextOverflow.ellipsis,
-                )),
+                child: getname(snapshot, index, context),
+            ),
             Container(
                 margin: const EdgeInsets.only(
                   top:0,
                 ),
-                child: AutoSizeText("\$" + snapshot.data[index].price)),
+                child:getprice(snapshot, index, context),
+            ),
           ],
         ),
       ),
     ),
   );
 }
-
 

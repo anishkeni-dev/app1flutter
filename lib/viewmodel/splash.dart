@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:app1/view/screens/login_view.dart';
-import 'package:app1/view/screens/home_view.dart';
+
+import 'package:app1/view/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../view/screens/login_screen.dart';
 
 var obtaineduname;
 

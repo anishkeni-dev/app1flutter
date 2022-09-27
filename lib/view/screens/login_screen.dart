@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../viewmodel/Widgets/login.dart';
+import '../../viewmodel/login.dart';
+import '../Widgets/login_w.dart';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key}) : super(key: key);
@@ -12,45 +13,21 @@ class MyLoginPage extends StatefulWidget {
   State<MyLoginPage> createState() => _MyLoginPageState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
-  final ucontroller = TextEditingController();
-  final pcontroller = TextEditingController();
 
+class _MyLoginPageState extends State<MyLoginPage> {
+  final pcontroller = TextEditingController();
+  final ucontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('images/frame1login.png'), fit: BoxFit.cover),
-      ),
+      decoration: getbackground(),
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+        appBar: getappbar(),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Center(
             child: Column(children: <Widget>[
-              Container(
-                transform: Matrix4.translationValues(0, 70, 0),
-                child: Image.asset(
-                  'images/logo.png',
-                  scale: 2.2,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.12,
-                ),
-                child: const AutoSizeText(
-                  'Sign in',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 35.0,
-                  ),
-                ),
-              ),
+               getlogo(context),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 margin: EdgeInsets.only(
@@ -75,10 +52,12 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       )),
                 ),
               ),
+
               const SizedBox(height: 20),
+              //password
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
-                child: TextFormField(
+                child:  TextFormField(
                   style: const TextStyle(color: Colors.white),
                   controller: pcontroller,
                   obscureText: true,
@@ -105,23 +84,25 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
+              //submit button
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                  MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.black),
+                  MaterialStateProperty.all<Color>(Colors.black),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       side: const BorderSide(color: Colors.white),
                       borderRadius: BorderRadius.circular(10))),
                 ),
                 onPressed: () async {
-                  setState(() {
-                    readJson(ucontroller.text, pcontroller.text, context);
-                  });
+                   setState(() {
+                   readJson(ucontroller.text, pcontroller.text,context);
+                   });
                 },
                 child: const Text('Sign in'),
               ),
+
               Container(
                 padding: const EdgeInsets.all(18),
                 child: const Text('New User? Sign Up',

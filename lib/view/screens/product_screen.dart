@@ -1,8 +1,7 @@
-import 'package:app1/model/products.dart';
-import 'package:app1/viewmodel/Widgets/home.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import '../../viewmodel/Widgets/Product.dart';
+import '../../viewmodel/Product.dart';
+import '../Widgets/product_w.dart';
+
 
 
 
@@ -38,8 +37,6 @@ class _SelectProductState extends State<SelectProduct> {
                 child: singleproduct(products, context),
               ),
             ),
-
-
           ],
         ),
 
