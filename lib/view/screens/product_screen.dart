@@ -17,13 +17,12 @@ products = prods;
 }
 
 
-
 class _SelectProductState extends State<SelectProduct> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black26,
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(40),
           child: productappbar(context),

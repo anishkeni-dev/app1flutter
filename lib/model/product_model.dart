@@ -1,4 +1,6 @@
-class Product {
+
+import 'package:flutter/material.dart';
+class Catalog with ChangeNotifier{
   int id;
   String price;
   String image;
@@ -6,13 +8,13 @@ class Product {
   String rating;
   String desc;
 
-  Product({
+  Catalog({
     required this.id,
     required this.title,
     required this.price,
     required this.image,
     required this.rating,
     required this.desc,
-
-  });
+  }
+  );
 }

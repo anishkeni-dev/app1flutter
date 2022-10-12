@@ -1,15 +1,14 @@
-import 'package:app1/model/products.dart';
+import 'package:app1/model/product_model.dart';
 import 'dart:convert';
 import 'api/product_api.dart';
 
-
-Future<List<Product>> fetchproductlist() async {
+Future<List<Catalog>> fetchproductlist() async {
   final response = await getRequest();
   var responseData = json.decode(response.body);
   //Creating a list to store input data;
-  List<Product> products = [];
+  List<Catalog> products = [];
   for (var singleProduct in responseData) {
-    Product prods = Product(
+    Catalog prods = Catalog(
       id: singleProduct["id"],
       title: singleProduct["title"],
       price: singleProduct["price"].toString(),
