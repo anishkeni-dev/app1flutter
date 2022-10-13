@@ -43,6 +43,7 @@ singleproduct(products, context) {
       children: [
         Stack(
           children: [
+            //image
             Container(
               height: MediaQuery.of(context).size.height * 0.38,
               width: MediaQuery.of(context).size.width * 0.38,
@@ -53,6 +54,7 @@ singleproduct(products, context) {
             ),
             Column(
               children: [
+                //title
                 Container(
                   height: MediaQuery.of(context).size.height * 0.30,
                   width: MediaQuery.of(context).size.width * 0.38,
@@ -60,6 +62,9 @@ singleproduct(products, context) {
                       MediaQuery.of(context).size.width * -0.28, 0, 0),
                   child: getproductname(products, context),
                 ),
+
+                //rating
+
                 Platform.isIOS
                 ?Container(
                     transform: Matrix4.translationValues(
@@ -77,6 +82,7 @@ singleproduct(products, context) {
                     style: TextStyle(color: Colors.black45),
                   ),
                 ),
+
                 Platform.isIOS
                     ? Container(
                         transform: Matrix4.translationValues(
@@ -114,6 +120,9 @@ singleproduct(products, context) {
                     ],
                   ),
                 ),
+
+                // price
+
                 Platform.isIOS
                     ?Container(
                       transform: Matrix4.translationValues(
@@ -132,15 +141,19 @@ singleproduct(products, context) {
                   ),
                 ),
                 Platform.isIOS
-                ?Container(
-                  transform: Matrix4.translationValues(
-                  MediaQuery.of(context).size.width * -0.37, -35, 0),
-                  child: getproductprice(products, context),
-                  )
-                :Container(
-                  transform: Matrix4.translationValues(
-                      MediaQuery.of(context).size.width * -0.37, -35, 0),
-                  child: getproductprice(products, context),
+                ?Align(alignment: Alignment.centerLeft,
+                  child: Container(
+                    transform: Matrix4.translationValues(
+                        MediaQuery.of(context).size.width * -0.01, -35, 0),
+                    child: getproductprice(products, context),
+                  ),
+                )
+                :Align(alignment: Alignment.centerLeft,
+                  child: Container(
+                    transform: Matrix4.translationValues(
+                        MediaQuery.of(context).size.width * -0.01, -35, 0),
+                    child: getproductprice(products, context),
+                  ),
                 ),
                 Container(
                   transform: Matrix4.translationValues(

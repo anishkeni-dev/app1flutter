@@ -7,35 +7,35 @@ import '../view/screens/login_screen.dart';
 import '../view/screens/product_screen.dart';
 import 'dart:math' as math;
 
-getimage(snapshot, index, context){
+getimage(datap, index, context){
   return Image.network(
-    snapshot.data[index].image,
+    datap.dataModel[index].image,
     width: 120,
     height: 120,
   );
 }
 
-getname(snapshot, index, context){
+getname(datap, index, context){
   return AutoSizeText(
-    snapshot.data[index].title,
+    datap.dataModel[index].title,
     overflow: TextOverflow.ellipsis,
   );
 }
 
-getprice(snapshot, index, context){
-  return AutoSizeText("\$" + snapshot.data[index].price);
+getprice(datap, index, context){
+  return AutoSizeText("\$" + datap.dataModel[index].price);
 }
-addtocart(snapshot, index, context){
-  Map<String, String> prods = Map();
-  prods['product_img'] = snapshot.data[index].image;
-  prods['product_name'] = snapshot.data[index].title;
-  prods['product_price'] = snapshot.data[index].price;
-  prods['rating'] = snapshot.data[index].rating;
-  prods['desc'] = snapshot.data[index].desc;
-  getcart(prods);
-  Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (BuildContext ctx) => MyCart()));
-}
+// addtocart(datap, index, context){
+//   Map<String, String> prods = Map();
+//   prods['product_img'] = datap.dataModel[index].image;
+//   prods['product_name'] = datap.dataModel[index].title;
+//   prods['product_price'] = datap.dataModel[index].price;
+//   prods['rating'] = datap.dataModel[index].rating;
+//   prods['desc'] = datap.dataModel[index].desc;
+//   getcart(prods);
+//   Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//           builder: (BuildContext ctx) => MyCart()));
+// }
 

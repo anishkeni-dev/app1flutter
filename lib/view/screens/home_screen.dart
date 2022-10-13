@@ -16,17 +16,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
 
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final data = Provider.of<Data>(context, listen: false);
+    data.fetchData();
   }
   @override
   Widget build(BuildContext context) {
-    var i = 0;
+    final datap = Provider.of<Data>(context); // data provider for products
     return Scaffold(
         backgroundColor: HexColor("F2F7ED"),
         appBar: PreferredSize(
@@ -61,12 +61,16 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Center(
             child: FutureBuilder(
-                future: fetchproductlist(),
-                builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-                  if (snapshot.data == null) {
+                future: datap.fetchData(),
+                builder: (BuildContext ctx,AsyncSnapshot) {
+                  if (datap.dataModel.isEmpty) {
                     return nodata();
                   } else {
-                    return buildproducts(ctx, snapshot);
+                    return  Consumer<Data>(
+                    builder: (context, datap, child) {
+                      return buildproducts(datap,ctx);
+                    }
+                    );
                   }
                 },
               ),

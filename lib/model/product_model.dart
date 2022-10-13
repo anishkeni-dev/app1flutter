@@ -17,4 +17,7 @@ class Catalog with ChangeNotifier{
     required this.desc,
   }
   );
+  factory Catalog.fromJson(Map<String,dynamic> json){
+    return Catalog(id: json['id'],title: json['title'], price: json['price'].toString(), rating: json['rating']['rate'].toString(), image: json['image'], desc: json['description']);
+  }
 }

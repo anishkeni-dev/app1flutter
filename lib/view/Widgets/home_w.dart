@@ -58,10 +58,10 @@ Widget buildappbar(context) {
                 MediaQuery.of(context).size.width * 0.52, 0, 0),
             child: TextButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext ctx) => const MyCart()));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext ctx) => const MyCart()));
                 },
                 icon: Icon(Icons.shopping_cart_rounded,color: Colors.black),
 
@@ -77,8 +77,7 @@ Widget nodata() {
   );
 }
 
-Widget buildproducts(context, snapshot) {
-  Provider.of<Products>(context);
+Widget buildproducts(datap,context) {
   return GridView.builder(
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
@@ -86,15 +85,15 @@ Widget buildproducts(context, snapshot) {
       childAspectRatio: MediaQuery.of(context).size.width * 0.0023,
       crossAxisSpacing: MediaQuery.of(context).size.width * 0.04,
     ),
-    itemCount: snapshot.data?.length,
+    itemCount: datap.dataModel.length,
     itemBuilder: (ctx, index) => GestureDetector(
       onTap: () {
         Map<String, String> prods = Map();
-        prods['product_img'] = snapshot.data[index].image;
-        prods['product_name'] = snapshot.data[index].title;
-        prods['product_price'] = snapshot.data[index].price;
-        prods['rating'] = snapshot.data[index].rating;
-        prods['desc'] = snapshot.data[index].desc;
+        prods['product_img'] = datap.dataModel[index].image;
+        prods['product_name'] = datap.dataModel[index].title;
+        prods['product_price'] = datap.dataModel[index].price;
+        prods['rating'] = datap.dataModel[index].rating;
+        prods['desc'] = datap.dataModel[index].desc;
 
         getproduct(prods);
         Navigator.push(
@@ -115,7 +114,7 @@ Widget buildproducts(context, snapshot) {
                 Container(
                   color: Colors.white,
                   margin: const EdgeInsets.all(10),
-                  child: getimage(snapshot, index, context),
+                  child: getimage(datap, index, context),
                 ),
                 Container(
                   transform: Matrix4.translationValues(
@@ -132,13 +131,13 @@ Widget buildproducts(context, snapshot) {
             ),
             Container(
               margin: const EdgeInsets.only(left: 8, right: 8, top: 2),
-              child: getname(snapshot, index, context),
+              child: getname( datap , index, context),
             ),
             //Products Price
 
             Container(
               margin: EdgeInsets.all(6),
-              child: getprice(snapshot, index, context),
+              child: getprice(datap,  index, context),
             ),
 
             //Product name
