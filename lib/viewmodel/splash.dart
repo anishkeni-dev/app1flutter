@@ -13,7 +13,7 @@ List user = [];
   Future getValidationData(context) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    obtaineduname = prefs.getString('uname')!;
+    obtaineduname = prefs.getString('uname');
 
   }
 

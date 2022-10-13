@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:app1/view/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,10 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
        create: (ctx) => Data(),
       builder: (context, child) {
-        return MaterialApp(
+        return GetMaterialApp(
           title: 'MyShop',
           theme: ThemeData(primarySwatch: Colors.grey),
-          home: HomePage(),
+          home: Splash(),
           debugShowCheckedModeBanner: false,
         );
       }

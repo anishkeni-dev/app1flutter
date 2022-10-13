@@ -38,7 +38,7 @@ productappbar(context) {
   );
 }
 
-singleproduct(productNo, context, datap) {
+singleproduct(loadedproduct,context) {
   return Container(
     child: Column(
       children: [
@@ -51,7 +51,7 @@ singleproduct(productNo, context, datap) {
               color: Colors.white,
               transform: Matrix4.translationValues(
                   MediaQuery.of(context).size.width * 0.38, -20.2, 0),
-              child: getproductimg(productNo, context,datap),
+              child: getproductimg(loadedproduct,context),
             ),
             Column(
               children: [
@@ -61,7 +61,7 @@ singleproduct(productNo, context, datap) {
                   width: MediaQuery.of(context).size.width * 0.38,
                   transform: Matrix4.translationValues(
                       MediaQuery.of(context).size.width * -0.28, 0, 0),
-                  child: getproductname(productNo, context,datap),
+                  child: getproductname(loadedproduct),
                 ),
 
                 //rating
@@ -91,7 +91,7 @@ singleproduct(productNo, context, datap) {
                         child: Row(
                         children: [
                         AutoSizeText(
-                          datap.dataModel[productNo].rating,
+                          loadedproduct.rating,
                         //products['rating'],
                         style: TextStyle(color: Colors.black),
                         maxFontSize: 50,
@@ -110,7 +110,7 @@ singleproduct(productNo, context, datap) {
                   child: Row(
                     children: [
                       AutoSizeText(
-                         datap.dataModel[productNo].rating,
+                         loadedproduct.rating,
                         style: TextStyle(color: Colors.black),
                         maxFontSize: 50,
                         minFontSize: 20,
@@ -147,14 +147,14 @@ singleproduct(productNo, context, datap) {
                   child: Container(
                     transform: Matrix4.translationValues(
                         MediaQuery.of(context).size.width * -0.01, -35, 0),
-                    child: getproductprice(productNo, context,datap),
+                    child: getproductprice(loadedproduct),
                   ),
                 )
                 :Align(alignment: Alignment.centerLeft,
                   child: Container(
                     transform: Matrix4.translationValues(
                         MediaQuery.of(context).size.width * -0.01, -35, 0),
-                    child: getproductprice(productNo, context,datap),
+                    child: getproductprice(loadedproduct),
                   ),
                 ),
                 Container(
@@ -261,7 +261,7 @@ singleproduct(productNo, context, datap) {
           child: AutoSizeText("Description ", style: TextStyle(color: Colors.black45),
           minFontSize: 15,)
         ),
-       getproductdesc(productNo, context,datap),
+       getproductdesc(loadedproduct),
       ],
     ),
   );

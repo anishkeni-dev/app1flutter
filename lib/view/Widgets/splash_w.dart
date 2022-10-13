@@ -1,13 +1,20 @@
+import 'package:app1/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:tbib_splash_screen/splash_screen_view.dart';
 
-getsplash(){
-  return  Center(
+
+getsplash(context) {
+  return Center(
     child: Container(
-      child: Text('Anish Keni',
-          style: TextStyle(
-              color: Colors.black,
-              fontSize:23)
+      child: SplashScreenView(
+        navigateRoute: const MyLoginPage(),
+        imageSrc: "images/logo.png",
+        // paddingText
+        // paddingLoading
       ),
-    ),
+
+
+
+      ),
   );
 }

@@ -8,3 +8,6 @@ Future<dynamic> getRequest() async {
   final response = await http.get(Uri.https('fakestoreapi.com','products'));
   return response;
 }
+
+
+

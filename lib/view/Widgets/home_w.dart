@@ -81,57 +81,57 @@ Widget buildproducts(datap,context) {
     ),
     itemCount: datap.dataModel.length,
     itemBuilder: (ctx, index) => GestureDetector(
-      onTap: () {
+        onTap: () {
+          getproduct(datap.dataModel[index].id);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext ctx) => const SelectProduct()));
 
-        getproduct(index);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext ctx) => const SelectProduct()));
-      },
-      child: Material(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0)),
-       elevation: 15,
-        child: Column(
-          children: [
-            //Product image
-            Stack(
-              children: [
-                Container(
-                  color: Colors.white,
-                  margin: const EdgeInsets.all(10),
-                  child: getimage(datap, index, context),
-                ),
-                Container(
-                  transform: Matrix4.translationValues(
-                      MediaQuery.of(context).size.width * -0.06,
-                      MediaQuery.of(context).size.height * -0.01,
-                      0),
-                  child: TextButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.favorite_border),
-                    label: Text(""),
+        },
+        child: Material(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)),
+         elevation: 15,
+          child: Column(
+            children: [
+              //Product image
+              Stack(
+                children: [
+                  Container(
+                    color: Colors.white,
+                    margin: const EdgeInsets.all(10),
+                    child: getimage(datap, index, context),
                   ),
-                ),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 8, right: 8, top: 2),
-              child: getname( datap , index, context),
-            ),
-            //Products Price
+                  Container(
+                    transform: Matrix4.translationValues(
+                        MediaQuery.of(context).size.width * -0.06,
+                        MediaQuery.of(context).size.height * -0.01,
+                        0),
+                    child: TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.favorite_border),
+                      label: Text(""),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 8, right: 8, top: 2),
+                child: getname( datap , index, context),
+              ),
+              //Products Price
 
-            Container(
-              margin: EdgeInsets.all(6),
-              child: getprice(datap,  index, context),
-            ),
+              Container(
+                margin: EdgeInsets.all(6),
+                child: getprice(datap,  index, context),
+              ),
 
-            //Product name
-          ],
+              //Product name
+            ],
+          ),
         ),
       ),
-    ),
   );
 }

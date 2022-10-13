@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final datap = Provider.of<Data>(context); // data provider for products
     return Scaffold(
-        backgroundColor: HexColor("F2F7ED"),
+        backgroundColor: HexColor("F2F2F2"),
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: buildappbar(context),

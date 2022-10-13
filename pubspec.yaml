@@ -35,7 +35,6 @@ dependencies:
   json_annotation: ^4.4.0
   auto_size_text: ^3.0.0
   shared_preferences: ^2.0.15
-  number_display: 3.0.0
   get: ^4.6.5
   http: ^0.13.5
   another_flushbar: ^1.12.29
@@ -44,6 +43,8 @@ dependencies:
   provider: ^6.0.3
   invert_colors: ^0.0.4
   hexcolor: ^2.0.7
+  tbib_splash_screen: ^0.0.6
+  page_transition: ^2.0.9
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

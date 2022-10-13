@@ -4,9 +4,6 @@ import '../../providers/products.dart';
 import '../../viewmodel/Product.dart';
 import '../Widgets/product_w.dart';
 
-
-
-
 class SelectProduct extends StatefulWidget {
   const SelectProduct({Key? key}) : super(key: key);
   @override
@@ -14,17 +11,24 @@ class SelectProduct extends StatefulWidget {
 }
 var productNo;
 
-getproduct(index){
-productNo = index;
+getproduct(id){
+productNo = id;
 }
 
 
 class _SelectProductState extends State<SelectProduct> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final data = Provider.of<Data>(context, listen: false);
+    data.fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final datap = Provider.of<Data>(context);
-    datap.fetchData();
+    final loadedproduct = Provider.of<Data>(context).dataModel.firstWhere((prod) => prod.id == productNo);
+    print(loadedproduct);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -40,7 +44,7 @@ class _SelectProductState extends State<SelectProduct> {
                 padding: EdgeInsets.all(20),
                 child: Consumer<Data>(
                     builder: (context, datap, child){
-                      return singleproduct(productNo, context, datap);
+                      return singleproduct(loadedproduct,context);
                     }
                       ),
                       )
