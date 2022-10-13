@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:app1/model/product_repo.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import '../../providers/products.dart';
 import '../Widgets/home_w.dart';
 
 import 'dart:math' as math;

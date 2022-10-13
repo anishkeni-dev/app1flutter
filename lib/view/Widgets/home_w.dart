@@ -9,7 +9,7 @@ import 'package:invert_colors/invert_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
-import '../../providers/products.dart';
+
 import '../screens/login_screen.dart';
 import '../screens/product_screen.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +78,7 @@ Widget nodata() {
 }
 
 Widget buildproducts(context, snapshot) {
-  Provider.of<Products>(context);
+
   return GridView.builder(
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
