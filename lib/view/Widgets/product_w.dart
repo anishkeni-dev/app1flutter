@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'package:app1/providers/products.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,7 @@ productappbar(context) {
   );
 }
 
-singleproduct(products, context) {
+singleproduct(productNo, context, datap) {
   return Container(
     child: Column(
       children: [
@@ -50,7 +51,7 @@ singleproduct(products, context) {
               color: Colors.white,
               transform: Matrix4.translationValues(
                   MediaQuery.of(context).size.width * 0.38, -20.2, 0),
-              child: getproductimg(products, context),
+              child: getproductimg(productNo, context,datap),
             ),
             Column(
               children: [
@@ -60,7 +61,7 @@ singleproduct(products, context) {
                   width: MediaQuery.of(context).size.width * 0.38,
                   transform: Matrix4.translationValues(
                       MediaQuery.of(context).size.width * -0.28, 0, 0),
-                  child: getproductname(products, context),
+                  child: getproductname(productNo, context,datap),
                 ),
 
                 //rating
@@ -90,7 +91,8 @@ singleproduct(products, context) {
                         child: Row(
                         children: [
                         AutoSizeText(
-                        products['rating'],
+                          datap.dataModel[productNo].rating,
+                        //products['rating'],
                         style: TextStyle(color: Colors.black),
                         maxFontSize: 50,
                         minFontSize: 20,
@@ -108,7 +110,7 @@ singleproduct(products, context) {
                   child: Row(
                     children: [
                       AutoSizeText(
-                        products['rating'],
+                         datap.dataModel[productNo].rating,
                         style: TextStyle(color: Colors.black),
                         maxFontSize: 50,
                         minFontSize: 20,
@@ -145,14 +147,14 @@ singleproduct(products, context) {
                   child: Container(
                     transform: Matrix4.translationValues(
                         MediaQuery.of(context).size.width * -0.01, -35, 0),
-                    child: getproductprice(products, context),
+                    child: getproductprice(productNo, context,datap),
                   ),
                 )
                 :Align(alignment: Alignment.centerLeft,
                   child: Container(
                     transform: Matrix4.translationValues(
                         MediaQuery.of(context).size.width * -0.01, -35, 0),
-                    child: getproductprice(products, context),
+                    child: getproductprice(productNo, context,datap),
                   ),
                 ),
                 Container(
@@ -259,7 +261,7 @@ singleproduct(products, context) {
           child: AutoSizeText("Description ", style: TextStyle(color: Colors.black45),
           minFontSize: 15,)
         ),
-        getproductdesc(products, context),
+       getproductdesc(productNo, context,datap),
       ],
     ),
   );

@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
-class Catalog with ChangeNotifier{
+
+class Catalog with ChangeNotifier {
   int id;
   String price;
   String image;
@@ -15,9 +15,14 @@ class Catalog with ChangeNotifier{
     required this.image,
     required this.rating,
     required this.desc,
-  }
-  );
-  factory Catalog.fromJson(Map<String,dynamic> json){
-    return Catalog(id: json['id'],title: json['title'], price: json['price'].toString(), rating: json['rating']['rate'].toString(), image: json['image'], desc: json['description']);
+  });
+  factory Catalog.fromJson(Map<String, dynamic> json) {
+    return Catalog(
+        id: json['id'],
+        title: json['title'],
+        price: json['price'].toString(),
+        rating: json['rating']['rate'].toString(),
+        image: json['image'],
+        desc: json['description']);
   }
 }

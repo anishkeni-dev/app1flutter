@@ -1,36 +1,35 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-getproductimg(products, context) {
+getproductimg(productNo, context,datap) {
   return Container(
    transform: Matrix4.translationValues(
        MediaQuery.of(context).size.width * 0.10, 0, 0),
     child: FadeInImage.assetNetwork(
-     image: products['product_img'], placeholder: 'products',
-
+     image: datap.dataModel[productNo].image, placeholder: 'products',
       ),
     );
 }
 
-getproductname(products, context) {
+getproductname(productNo, context,datap) {
   return AutoSizeText(
-    products['product_name'],
+    datap.dataModel[productNo].title,
     maxFontSize: 60,
     minFontSize: 18,
   );
 }
 
-getproductprice(products, context) {
+getproductprice(productNo, context,datap) {
   return AutoSizeText(
-    "\$" + products['product_price'],
+    "\$" +   datap.dataModel[productNo].price,
     maxFontSize: 50,
     minFontSize: 20,
   );
 }
 
-getproductdesc(products, context) {
+getproductdesc(productNo, context,datap) {
   return AutoSizeText(
-     products['desc'],
+    datap.dataModel[productNo].desc,
     maxFontSize: 50,
     minFontSize: 20,
   );

@@ -1,18 +1,12 @@
-
-import 'package:app1/view/Widgets/login_w.dart';
-import 'package:app1/view/screens/cart_screen.dart';
 import 'package:app1/viewmodel/home.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:invert_colors/invert_colors.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
-import '../../providers/products.dart';
 import '../screens/login_screen.dart';
 import '../screens/product_screen.dart';
-import 'package:provider/provider.dart';
+
 
 Widget buildappbar(context) {
   return AppBar(
@@ -88,14 +82,8 @@ Widget buildproducts(datap,context) {
     itemCount: datap.dataModel.length,
     itemBuilder: (ctx, index) => GestureDetector(
       onTap: () {
-        Map<String, String> prods = Map();
-        prods['product_img'] = datap.dataModel[index].image;
-        prods['product_name'] = datap.dataModel[index].title;
-        prods['product_price'] = datap.dataModel[index].price;
-        prods['rating'] = datap.dataModel[index].rating;
-        prods['desc'] = datap.dataModel[index].desc;
 
-        getproduct(prods);
+        getproduct(index);
         Navigator.push(
             context,
             MaterialPageRoute(
