@@ -5,8 +5,6 @@ import '../../viewmodel/splash.dart';
 import '../Widgets/splash_w.dart';
 
 
-
-
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
   @override
