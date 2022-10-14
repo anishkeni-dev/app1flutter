@@ -7,15 +7,13 @@ import 'package:flutter/material.dart';
 
 import '../model/product_repo.dart';
 
-class Data extends ChangeNotifier{
+class WishlistProvider extends ChangeNotifier{
 
-  late List<Catalog> dataModel= [];
+  late List<Catalog> WishlistModel= [];
 
   fetchData() async{
 
-    dataModel = await getData();
-
-
+    WishlistModel = await getData();
     notifyListeners();
   }
 

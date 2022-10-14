@@ -1,4 +1,5 @@
-import 'package:app1/model/product_model.dart';
+import 'package:app1/providers/product_model.dart';
+import 'package:app1/providers/wishlist_provider.dart';
 import 'package:app1/view/screens/cart_screen.dart';
 import 'package:app1/viewmodel/home.dart';
 import 'package:flutter/material.dart';
@@ -68,15 +69,17 @@ class _HomePageState extends State<HomePage> {
                   } else {
                     return  Consumer<Data>(
                     builder: (context, datap, child) {
-                      return buildproducts(datap,ctx);
+                      return Catalogbuilder();
                     }
                     );
                   }
                 },
               ),
 
+
         ),
       );
 
   }
 }
+

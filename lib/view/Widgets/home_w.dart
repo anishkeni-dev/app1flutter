@@ -1,11 +1,18 @@
+
+import 'package:app1/providers/product_model.dart';
 import 'package:app1/viewmodel/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:invert_colors/invert_colors.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
+import '../../providers/products.dart';
 import '../screens/login_screen.dart';
 import '../screens/product_screen.dart';
+
+
+
 
 
 Widget buildappbar(context) {
@@ -71,16 +78,35 @@ Widget nodata() {
   );
 }
 
-Widget buildproducts(datap,context) {
-  return GridView.builder(
-    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2,
-      mainAxisSpacing: MediaQuery.of(context).size.width * 0.04,
-      childAspectRatio: MediaQuery.of(context).size.width * 0.0023,
-      crossAxisSpacing: MediaQuery.of(context).size.width * 0.04,
-    ),
-    itemCount: datap.dataModel.length,
-    itemBuilder: (ctx, index) => GestureDetector(
+class Catalogbuilder extends StatefulWidget {
+  const Catalogbuilder({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<Catalogbuilder> createState() => _CatalogbuilderState();
+}
+
+class _CatalogbuilderState extends State<Catalogbuilder> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // final data = Provider.of<Catalog>(context, listen: true);
+    // data.addtowishlist();
+  }
+  @override
+  Widget build(BuildContext context) {
+    final datap =  Provider.of<Data>(context);
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: MediaQuery.of(context).size.width * 0.04,
+        childAspectRatio: MediaQuery.of(context).size.width * 0.0023,
+        crossAxisSpacing: MediaQuery.of(context).size.width * 0.04,
+      ),
+      itemCount: datap.dataModel.length,
+      itemBuilder: (ctx, index) =>GestureDetector(
         onTap: () {
           getproduct(datap.dataModel[index].id);
           Navigator.push(
@@ -93,7 +119,7 @@ Widget buildproducts(datap,context) {
           color: Colors.white,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0)),
-         elevation: 15,
+          elevation: 15,
           child: Column(
             children: [
               //Product image
@@ -102,7 +128,7 @@ Widget buildproducts(datap,context) {
                   Container(
                     color: Colors.white,
                     margin: const EdgeInsets.all(10),
-                    child: getimage(datap, index, context),
+                    child: getimage(datap, index),
                   ),
                   Container(
                     transform: Matrix4.translationValues(
@@ -110,8 +136,13 @@ Widget buildproducts(datap,context) {
                         MediaQuery.of(context).size.height * -0.01,
                         0),
                     child: TextButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Icons.favorite_border),
+                      onPressed: () {
+                        setState(() {
+                          datap.dataModel[index].addtowishlist();
+                        });
+
+                        },
+                      icon: Icon(datap.dataModel[index].isfav?Icons.favorite : Icons.favorite_border),
                       label: Text(""),
                     ),
                   ),
@@ -119,13 +150,13 @@ Widget buildproducts(datap,context) {
               ),
               Container(
                 margin: const EdgeInsets.only(left: 8, right: 8, top: 2),
-                child: getname( datap , index, context),
+                child: getname( datap , index),
               ),
               //Products Price
 
               Container(
                 margin: EdgeInsets.all(6),
-                child: getprice(datap,  index, context),
+                child: getprice(datap,  index),
               ),
 
               //Product name
@@ -133,5 +164,8 @@ Widget buildproducts(datap,context) {
           ),
         ),
       ),
-  );
+
+    );
+  }
 }
+

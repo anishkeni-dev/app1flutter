@@ -7,7 +7,7 @@ import '../view/screens/login_screen.dart';
 import '../view/screens/product_screen.dart';
 import 'dart:math' as math;
 
-getimage(datap, index, context){
+getimage(datap, index){
   return Image.network(
     datap.dataModel[index].image,
     width: 120,
@@ -15,16 +15,19 @@ getimage(datap, index, context){
   );
 }
 
-getname(datap, index, context){
+getname(datap, index){
   return AutoSizeText(
     datap.dataModel[index].title,
     overflow: TextOverflow.ellipsis,
   );
 }
 
-getprice(datap, index, context){
+getprice(datap, index){
   return AutoSizeText("\$" + datap.dataModel[index].price);
 }
+// void addtofav(datap,index){
+//   datap.datModel[index].isfav = !datap.datModel[index].isfav;
+// }
 // addtocart(datap, index, context){
 //   Map<String, String> prods = Map();
 //   prods['product_img'] = datap.dataModel[index].image;

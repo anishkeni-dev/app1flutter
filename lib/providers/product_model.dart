@@ -7,7 +7,7 @@ class Catalog with ChangeNotifier {
   String title;
   String rating;
   String desc;
-
+  bool isfav;
   Catalog({
     required this.id,
     required this.title,
@@ -15,6 +15,7 @@ class Catalog with ChangeNotifier {
     required this.image,
     required this.rating,
     required this.desc,
+    required this.isfav,
   });
   factory Catalog.fromJson(Map<String, dynamic> json) {
     return Catalog(
@@ -23,6 +24,14 @@ class Catalog with ChangeNotifier {
         price: json['price'].toString(),
         rating: json['rating']['rate'].toString(),
         image: json['image'],
-        desc: json['description']);
+        desc: json['description'],
+        isfav: false,
+        );
+
+  }
+
+  void addtowishlist(){
+    isfav = !isfav;
+    notifyListeners();
   }
 }

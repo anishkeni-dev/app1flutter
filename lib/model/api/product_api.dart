@@ -1,4 +1,4 @@
-import 'package:app1/model/product_model.dart';
+import 'package:app1/providers/product_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
