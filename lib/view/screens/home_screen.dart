@@ -1,6 +1,6 @@
 import 'package:app1/providers/product_model.dart';
-import 'package:app1/providers/wishlist_provider.dart';
 import 'package:app1/view/screens/cart_screen.dart';
+import 'package:app1/view/screens/wishlist.dart';
 import 'package:app1/viewmodel/home.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/model/product_repo.dart';
@@ -51,14 +51,42 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: HexColor("0000"),
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.home, color: Colors.white,), label: '' ),
+                      label: '',
+                    icon:
+                      TextButton.icon(icon:Icon(Icons.layers_outlined),
+                        label: Text('text')!,
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (
+                                      BuildContext ctx) => HomePage()));
+                        },
+                      ) ),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.favorite,color: Colors.white), label: ''),
+                    label: '',
+                      icon: TextButton.icon(icon:Icon(Icons.favorite),
+                        label: Text('text')!,
+                        onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (
+                                    BuildContext ctx) => const MyWishlist()));
+                      },
+                      )),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.person,color: Colors.white), label: '')
+                      label: '',
+                    icon:
+                      TextButton.icon(icon:Icon(Icons.person),
+                        label: Text('text')!,
+                        onPressed: () {
+
+                        },
+                      ))
                 ],
               ),
-            )
+            ),
         ),
         body: Center(
             child: FutureBuilder(

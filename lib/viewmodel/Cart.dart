@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import '../../viewmodel/Cart.dart';
 import '../view/Widgets/cart_w.dart';
 
-Showcart(context,products) {
-  return Container(
-    child:
-        getproductname_price(products, context),
+Showcart(product,context) {
+  return ListView.builder(
+    itemCount: 2,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(product.title, style: TextStyle(color: Colors.white),),
+        );
+      }
   );
 }

@@ -1,60 +1,72 @@
-// import 'package:flutter/material.dart';
-// import '../../model/product_repo.dart';
-// import '../../viewmodel/Product.dart';
-// import '../../viewmodel/Cart.dart';
-// import '../Widgets/cart_w.dart';
-// import '../Widgets/home_w.dart';
-// import '../Widgets/product_w.dart';
-//
-// class MyCart extends StatefulWidget {
-//   const MyCart({Key? key}) : super(key: key);
-//   @override
-//   State<MyCart> createState() => _MyCartState();
-// }
-// Map<String, String> products = Map();
-// getcart(prods){
-//   products = prods;
-// }
-//
-// class _MyCartState extends State<MyCart> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         backgroundColor: Colors.black26,
-//         appBar: PreferredSize(
-//           preferredSize: const Size.fromHeight(40),
-//           child: productappbar(context),
-//         ),
-//         body:
-//         Column(
-//           children: [
-//             Expanded(
-//               child:SingleChildScrollView(
-//                 padding: EdgeInsets.all(20),
-//                 child: FutureBuilder(
-//                   future: fetchproductlist(),
-//                   builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-//                     if (snapshot.data == null) {
-//                       return nodata();
-//
-//                     } else {
-//                       print(products);
-//                       return
-//                         Showcart(ctx, products);
-//                     }
-//                   },
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//
-//       ),
-//     );
-//   }
-// }
-//
-//
-//
-//
+// Copyright 2019 The Flutter team. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
+import 'package:app1/providers/product_model.dart';
+import 'package:app1/providers/products.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class MyCart extends StatefulWidget {
+  const MyCart({Key? key}) : super(key: key);
+
+  @override
+  State<MyCart> createState() => _MyCartState();
+}
+
+
+
+var totalprice ;
+
+class _MyCartState extends State<MyCart> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final data = Provider.of<Data>(context, listen: false);
+    data.fetchData();
+  }
+
+  @override
+//displaying details in cart
+  Widget build(BuildContext context) {
+    final loadedproduct = Provider.of<Data>(context);
+    return Scaffold(
+      bottomNavigationBar: Container(child: Text(loadedproduct.carttotal.toString()),),
+      appBar: AppBar(
+        title: Text("Cart"),
+      ),
+      body: Consumer<Data>(builder: (context,loadedproduct, child) {
+        return ListView.builder(
+            itemCount: loadedproduct.cartlistbyid.length,
+            itemBuilder: (context,index) {
+              return Column(
+                children: [
+                  Image.network(
+                    loadedproduct.cartlistbyid[index].image,
+                    width: 100,
+                    height: 100,
+                  ),
+                  Text(loadedproduct.cartlistbyid[index].title),
+                  Text(loadedproduct.cartlistbyid[index].price),
+                  Text(loadedproduct.cartlistbyid[index].id.toString()),
+                  //removefromcart
+                  ElevatedButton(onPressed: (){
+                    loadedproduct.removefromcart(loadedproduct.cartlistbyid[index]);
+                    loadedproduct.cartlistbyid[index].isincart=!loadedproduct.cartlistbyid[index].isincart;
+                    setState(() {
+                    });
+                  }, child: Icon(Icons.remove_circle_outline))
+                ],
+              );
+            }
+        );
+      }
+      ),
+
+    );
+  }
+}

@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 
-getproductname_price(products, context) {
+getproductname_price(product, context) {
   return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -12,7 +12,7 @@ getproductname_price(products, context) {
     child: Row(
       children: [
     Image.network(
-    products['product_img'],
+    product.image,
       height: MediaQuery.of(context).size.height *0.11,
       width: MediaQuery.of(context).size.height * 0.11,
     ),
@@ -27,7 +27,7 @@ getproductname_price(products, context) {
           child: Column(
             children: [
               AutoSizeText(
-                  products['product_name'],
+                  product.title,
                   style: TextStyle(color: Colors.white),
                   maxFontSize: 50,
                   minFontSize: 20,
@@ -37,7 +37,7 @@ getproductname_price(products, context) {
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: AutoSizeText(
-                    "\$" + products['product_price'],
+                    "\$" + product.price,
                     style: TextStyle(color: Colors.white),
                     maxFontSize: 50,
                     minFontSize: 20,

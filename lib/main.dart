@@ -1,4 +1,3 @@
-import 'package:app1/providers/wishlist_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:app1/view/screens/home_screen.dart';
@@ -15,10 +14,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => Data(),),
-      ChangeNotifierProvider(create: (context) => WishlistProvider(),)
-    ],
+    return MultiProvider(
+      providers: [ChangeNotifierProvider<Data>(create: (_) => Data())],
      child: GetMaterialApp(
       title: 'MyShop',
       theme: ThemeData(primarySwatch: Colors.grey),

@@ -8,11 +8,106 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
 import '../../providers/products.dart';
+import '../screens/cart_screen.dart';
 import '../screens/login_screen.dart';
 import '../screens/product_screen.dart';
 
 
 
+class Catalogbuilder extends StatefulWidget {
+  const Catalogbuilder({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<Catalogbuilder> createState() => _CatalogbuilderState();
+}
+
+class _CatalogbuilderState extends State<Catalogbuilder> {
+  var savingproduct;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final data = Provider.of<Data>(context);
+      data.addtowishlist(savingproduct);
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    final datap =  Provider.of<Data>(context);
+    return GridView.builder(
+      padding: EdgeInsets.all(10),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: MediaQuery.of(context).size.width * 0.04,
+        childAspectRatio: MediaQuery.of(context).size.width * 0.0023,
+        crossAxisSpacing: MediaQuery.of(context).size.width * 0.04,
+      ),
+      itemCount: datap.dataModel.length,
+      itemBuilder: (ctx, index) => GestureDetector(
+        onTap: () {
+          getproduct(datap.dataModel[index].id);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext ctx) => const SelectProduct()));
+
+        },
+        child: Material(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)),
+          elevation: 15,
+          child: Column(
+            children: [
+              //Product image
+              Stack(
+                children: [
+                  Container(
+                    color: Colors.white,
+                    margin: const EdgeInsets.all(10),
+                    child: getimage(datap, index),
+                  ),
+                  Container(
+                    transform: Matrix4.translationValues(
+                        MediaQuery.of(context).size.width * -0.06,
+                        MediaQuery.of(context).size.height * -0.01,
+                        0),
+                    child: TextButton.icon(
+                      onPressed: () {
+                        datap.addtowishlist(datap.dataModel[index]);
+                        setState(() {});
+                        },
+                      icon: Icon(
+                          datap.dataModel[index].isfav ? Icons.favorite : Icons.favorite_border,
+                      ),
+                      label: Text(""),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 8, right: 8, top: 2),
+                child: getname( datap , index),
+              ),
+              //Products Price
+
+              Container(
+                margin: EdgeInsets.all(6),
+                child: getprice(datap,  index),
+              ),
+
+              //Product name
+            ],
+          ),
+        ),
+      ),
+
+    );
+  }
+}
 
 
 Widget buildappbar(context) {
@@ -59,10 +154,10 @@ Widget buildappbar(context) {
                 MediaQuery.of(context).size.width * 0.52, 0, 0),
             child: TextButton.icon(
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (BuildContext ctx) => const MyCart()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext ctx) => const MyCart()));
                 },
                 icon: Icon(Icons.shopping_cart_rounded,color: Colors.black),
 
@@ -77,95 +172,3 @@ Widget nodata() {
     child: CircularProgressIndicator(),
   );
 }
-
-class Catalogbuilder extends StatefulWidget {
-  const Catalogbuilder({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<Catalogbuilder> createState() => _CatalogbuilderState();
-}
-
-class _CatalogbuilderState extends State<Catalogbuilder> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // final data = Provider.of<Catalog>(context, listen: true);
-    // data.addtowishlist();
-  }
-  @override
-  Widget build(BuildContext context) {
-    final datap =  Provider.of<Data>(context);
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: MediaQuery.of(context).size.width * 0.04,
-        childAspectRatio: MediaQuery.of(context).size.width * 0.0023,
-        crossAxisSpacing: MediaQuery.of(context).size.width * 0.04,
-      ),
-      itemCount: datap.dataModel.length,
-      itemBuilder: (ctx, index) =>GestureDetector(
-        onTap: () {
-          getproduct(datap.dataModel[index].id);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext ctx) => const SelectProduct()));
-
-        },
-        child: Material(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0)),
-          elevation: 15,
-          child: Column(
-            children: [
-              //Product image
-              Stack(
-                children: [
-                  Container(
-                    color: Colors.white,
-                    margin: const EdgeInsets.all(10),
-                    child: getimage(datap, index),
-                  ),
-                  Container(
-                    transform: Matrix4.translationValues(
-                        MediaQuery.of(context).size.width * -0.06,
-                        MediaQuery.of(context).size.height * -0.01,
-                        0),
-                    child: TextButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          datap.dataModel[index].addtowishlist();
-                        });
-
-                        },
-                      icon: Icon(datap.dataModel[index].isfav?Icons.favorite : Icons.favorite_border),
-                      label: Text(""),
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 8, right: 8, top: 2),
-                child: getname( datap , index),
-              ),
-              //Products Price
-
-              Container(
-                margin: EdgeInsets.all(6),
-                child: getprice(datap,  index),
-              ),
-
-              //Product name
-            ],
-          ),
-        ),
-      ),
-
-    );
-  }
-}
-
