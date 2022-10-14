@@ -112,6 +112,7 @@ class _CatalogbuilderState extends State<Catalogbuilder> {
 
 Widget buildappbar(context) {
   return AppBar(
+    automaticallyImplyLeading: false,
     elevation: 0,
     backgroundColor: Colors.transparent,
     title: Row(

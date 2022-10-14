@@ -53,7 +53,6 @@ class _SelectProductState extends State<SelectProduct> {
           title: Row(
             children: [
 
-
               Container(
                 transform: Matrix4.translationValues(
                     MediaQuery.of(context).size.width * 0.23, 0, 0),

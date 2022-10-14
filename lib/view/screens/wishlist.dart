@@ -20,6 +20,7 @@ class _MyWishlistState extends State<MyWishlist> {
     final loadedproduct = Provider.of<Data>(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title:Row(
           children:[
             TextButton.icon(icon:Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black,),
