@@ -9,6 +9,7 @@ import 'package:invert_colors/invert_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
+import '../../common/commmon.dart';
 import '../../providers/cart_provider.dart';
 import '../../providers/products.dart';
 import '../screens/cart_screen.dart';
@@ -164,27 +165,13 @@ Widget buildappbar(context) {
                 MediaQuery.of(context).size.width * 0.52, 0, 0),
             child:
 
-            Badge(
-                position: BadgePosition.topEnd(top: 0,end: 20),
-                badgeColor: Colors.red,
-                  animationDuration: Duration(milliseconds: 300),
-                  animationType: BadgeAnimationType.slide,
-                badgeContent: Center(child: Text(cartp.cartlistbyid.length.toString() ,style: TextStyle(fontSize: 10),)),
-              child: TextButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext ctx) => const MyCart()));
-                  },
-                  icon: Icon(Icons.shopping_cart_rounded,color: Colors.black),
-
-                  label: Text(''))),
+            cartbadge(cartp, context),
             ),
       ],
     ),
   );
 }
+
 
 Widget nodata() {
   return const Center(

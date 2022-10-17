@@ -3,6 +3,8 @@ import 'package:app1/view/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import '../../common/commmon.dart';
+import '../../providers/cart_provider.dart';
 import '../../providers/products.dart';
 import '../../providers/wishlist_provider.dart';
 
@@ -19,6 +21,7 @@ class _MyWishlistState extends State<MyWishlist> {
 
   Widget build(BuildContext context) {
     final loadedproduct = Provider.of<Wishlist>(context);
+    final cartp = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -30,7 +33,12 @@ class _MyWishlistState extends State<MyWishlist> {
             onPressed: (){
              Get.to(HomePage());
               }, ),
-            Text('wishlist'),
+            Text('Wishlist'),
+            Container(
+                transform: Matrix4.translationValues(
+                    MediaQuery.of(context).size.width * 0.48, 0, 0),
+                child: cartbadge(cartp, context)
+            )
         ]
       ),
       ),
@@ -59,7 +67,7 @@ class _MyWishlistState extends State<MyWishlist> {
         );
       }
       ),
-
+      bottomNavigationBar:bottombar(context),
     );
   }
 }

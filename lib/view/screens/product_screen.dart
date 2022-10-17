@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'home_screen.dart';
 import 'package:app1/providers/product_model.dart';
 import 'package:app1/view/Widgets/home_w.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:invert_colors/invert_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../common/commmon.dart';
 import '../../providers/cart_provider.dart';
 import '../../providers/products.dart';
 import '../../viewmodel/Product.dart';
@@ -45,8 +46,7 @@ class _SelectProductState extends State<SelectProduct> {
         .dataModel
         .firstWhere((prod) => prod.id == productNo);
     print(loadedproduct);
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(40),
@@ -69,21 +69,13 @@ class _SelectProductState extends State<SelectProduct> {
                 Container(
                     transform: Matrix4.translationValues(
                         MediaQuery.of(context).size.width * 0.52, 0, 0),
-                    child: TextButton.icon(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext ctx) =>
-                                      const MyCart()));
-                        },
-                        icon: Icon(Icons.shopping_cart_rounded,
-                            color: Colors.black),
-                        label: Text(''))),
+                    child: cartbadge(cartp, context)
+                ),
               ],
             ),
           ),
         ),
+
         body: Column(
           children: [
             Expanded(
@@ -392,7 +384,9 @@ class _SelectProductState extends State<SelectProduct> {
             )),
           ],
         ),
-      ),
-    );
+        bottomNavigationBar:bottombar(context),
+      );
   }
+
+
 }
