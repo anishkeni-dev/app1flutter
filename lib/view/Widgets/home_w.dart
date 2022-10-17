@@ -1,12 +1,15 @@
-
+import 'package:app1/providers/wishlist_provider.dart';
+import 'package:badges/badges.dart';
 import 'package:app1/providers/product_model.dart';
 import 'package:app1/viewmodel/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:invert_colors/invert_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
+import '../../providers/cart_provider.dart';
 import '../../providers/products.dart';
 import '../screens/cart_screen.dart';
 import '../screens/login_screen.dart';
@@ -30,13 +33,16 @@ class _CatalogbuilderState extends State<Catalogbuilder> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final data = Provider.of<Data>(context);
+      final data = Provider.of<Wishlist>(context);
+
       data.addtowishlist(savingproduct);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final datap =  Provider.of<Data>(context);
+    final wishp = Provider.of<Wishlist>(context);
     return GridView.builder(
       padding: EdgeInsets.all(10),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -77,11 +83,13 @@ class _CatalogbuilderState extends State<Catalogbuilder> {
                         0),
                     child: TextButton.icon(
                       onPressed: () {
-                        datap.addtowishlist(datap.dataModel[index]);
-                        setState(() {});
-                        },
+                          wishp.addtowishlist(datap.dataModel[index]);
+                          setState(() {
+
+                          });
+                      },
                       icon: Icon(
-                          datap.dataModel[index].isfav ? Icons.favorite : Icons.favorite_border,
+                          wishp.iswished ? Icons.favorite : Icons.favorite_border,
                       ),
                       label: Text(""),
                     ),
@@ -111,6 +119,7 @@ class _CatalogbuilderState extends State<Catalogbuilder> {
 
 
 Widget buildappbar(context) {
+ var cartp = Provider.of<Cart>(context);
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0,
@@ -153,16 +162,25 @@ Widget buildappbar(context) {
         Container(
             transform: Matrix4.translationValues(
                 MediaQuery.of(context).size.width * 0.52, 0, 0),
-            child: TextButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext ctx) => const MyCart()));
-                },
-                icon: Icon(Icons.shopping_cart_rounded,color: Colors.black),
+            child:
 
-                label: Text(''))),
+            Badge(
+                position: BadgePosition.topEnd(top: 0,end: 20),
+                badgeColor: Colors.red,
+                  animationDuration: Duration(milliseconds: 300),
+                  animationType: BadgeAnimationType.slide,
+                badgeContent: Center(child: Text(cartp.cartlistbyid.length.toString() ,style: TextStyle(fontSize: 10),)),
+              child: TextButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext ctx) => const MyCart()));
+                  },
+                  icon: Icon(Icons.shopping_cart_rounded,color: Colors.black),
+
+                  label: Text(''))),
+            ),
       ],
     ),
   );

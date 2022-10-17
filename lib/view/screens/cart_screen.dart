@@ -10,6 +10,8 @@ import 'package:app1/providers/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/cart_provider.dart';
+
 class MyCart extends StatefulWidget {
   const MyCart({Key? key}) : super(key: key);
 
@@ -33,31 +35,33 @@ class _MyCartState extends State<MyCart> {
   @override
 //displaying details in cart
   Widget build(BuildContext context) {
-    final loadedproduct = Provider.of<Data>(context);
+    final cart = Provider.of<Cart>(context);
     return Scaffold(
-      bottomNavigationBar: Container(child: Text(loadedproduct.carttotal.toString()),),
+      bottomNavigationBar: Container(child: Text(cart.carttotal.toString()),),
       appBar: AppBar(
         title: Text("Cart"),
+
       ),
-      body: Consumer<Data>(builder: (context,loadedproduct, child) {
+      body: Consumer<Data>(builder: (context,cartp, child) {
         return ListView.builder(
-            itemCount: loadedproduct.cartlistbyid.length,
+            itemCount: cart.cartlistbyid.length,
             itemBuilder: (context,index) {
               return Column(
                 children: [
                   Image.network(
-                    loadedproduct.cartlistbyid[index].image,
+                    cart.cartlistbyid[index].image,
                     width: 100,
                     height: 100,
                   ),
-                  Text(loadedproduct.cartlistbyid[index].title),
-                  Text(loadedproduct.cartlistbyid[index].price),
-                  Text(loadedproduct.cartlistbyid[index].id.toString()),
+                  Text(cart.cartlistbyid[index].title),
+                  Text(cart.cartlistbyid[index].price),
+                  Text(cart.cartlistbyid[index].id.toString()),
                   //removefromcart
-                  ElevatedButton(onPressed: (){
-                    loadedproduct.removefromcart(loadedproduct.cartlistbyid[index]);
-                    loadedproduct.cartlistbyid[index].isincart=!loadedproduct.cartlistbyid[index].isincart;
+                  ElevatedButton(
+                      onPressed: (){
+                    cart.removefromcart(cart.cartlistbyid[index]);
                     setState(() {
+
                     });
                   }, child: Icon(Icons.remove_circle_outline))
                 ],

@@ -1,6 +1,6 @@
 import 'package:app1/providers/product_model.dart';
 import 'package:app1/view/screens/cart_screen.dart';
-import 'package:app1/view/screens/wishlist.dart';
+import 'package:app1/view/screens/wishlist_screen.dart';
 import 'package:app1/viewmodel/home.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/model/product_repo.dart';
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                       label: '',
                     icon:
                       TextButton.icon(icon:Icon(Icons.layers_outlined),
-                        label: Text('text')!,
+                        label: Text('text'),
                         onPressed: () {
                           Navigator.pushReplacement(
                               context,
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                   BottomNavigationBarItem(
                     label: '',
                       icon: TextButton.icon(icon:Icon(Icons.favorite),
-                        label: Text('text')!,
+                        label: Text('text'),
                         onPressed: () {
                         Navigator.pushReplacement(
                             context,
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       label: '',
                     icon:
                       TextButton.icon(icon:Icon(Icons.person),
-                        label: Text('text')!,
+                        label: Text('text'),
                         onPressed: () {
 
                         },
