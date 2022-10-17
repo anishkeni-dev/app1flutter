@@ -5,22 +5,17 @@ class Wishlist extends ChangeNotifier {
   late List<Catalog> wishlistbyid = [];
   bool iswished = false;
   addtowishlist(element){
-    if(iswished == true)
-    {
-      return null;
 
-    }
-    else {
+
       wishlistbyid.add(element);
-      iswished = true;
-    }
+      element.isfav = true;
 
   notifyListeners();
   }
   removefromwishlist(element){
   iswished = false;
   wishlistbyid.remove(element);
-  element.isincart = false;
+  element.isfav = false;
   notifyListeners();
   }
 

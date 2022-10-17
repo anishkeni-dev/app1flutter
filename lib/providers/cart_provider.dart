@@ -9,13 +9,19 @@ class Cart extends ChangeNotifier {
 
 
   addtocart(element) {
-    cartlistbyid.add(element);
-    var productprice = double.parse(element.price);
-    carttotal = carttotal + productprice;
-     iscart = true;
+    if(cartlistbyid.contains(element))
+      {
+        return null;
+      }
+    else {
+      cartlistbyid.add(element);
+      var productprice = double.parse(element.price);
+      carttotal = carttotal + productprice;
+      iscart = true;
+      notifyListeners();
+    }
 
 
-    notifyListeners();
   }
 
   removefromcart(element) {

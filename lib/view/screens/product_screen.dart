@@ -324,11 +324,10 @@ class _SelectProductState extends State<SelectProduct> {
                           height: 40,
                           width: MediaQuery.of(context).size.width * 1,
                           child: ElevatedButton(
-                            onPressed: cartp.iscart
-                                ? null
-                                : () {
+                            onPressed: () {
+                              cartp.cartlistbyid.contains(loadedproduct)? null:
                                     cartp.addtocart(loadedproduct);
-                                    setState(() async {});
+                                    setState(() {});
                                   },
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all(
@@ -340,9 +339,7 @@ class _SelectProductState extends State<SelectProduct> {
                               backgroundColor:
                                   MaterialStatePropertyAll<Color>(Colors.white),
                             ),
-                            child:
-                                cartp.iscart? AutoSizeText('Added', minFontSize: 20)
-                                : AutoSizeText(
+                            child: AutoSizeText(
                                     'Add to cart',
                                     minFontSize: 20,
                                     style: TextStyle(color: Colors.black),

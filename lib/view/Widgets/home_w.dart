@@ -86,7 +86,6 @@ class _CatalogbuilderState extends State<Catalogbuilder> {
                       onPressed: () {
                           wishp.addtowishlist(datap.dataModel[index]);
                           setState(() {
-
                           });
                       },
                       icon: Icon(
